@@ -9,7 +9,7 @@ export class RestCalls {
         private _appService: AppService, private _global: AppSettings) { }
 
     // get data from SharePoint List
-    getTaskData(select, orderby, filter, listName) {
+    getListDataByTitle(select, orderby, filter, listName) {
 
         let data = null;
         let url = null;
