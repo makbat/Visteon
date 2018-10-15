@@ -1,0 +1,30 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+      <h5 class="mb-0 panel-title">Pending Tasks</h5>
+  </div>
+  <div class="panel-body">
+      <div class="modal-body row">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Task Current Status</th>
+              <th scope="col">Created Date</th> 
+              <th scope="col">Status</th> 
+              <th scope="col">TaskOutcome</th>   
+              <th scope="col">Request Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of allTasks">
+              <th scope="row"><a href={{task.TaskItemUrl}} target="_blank"> {{task.Title}}</a></th>
+              <td>{{task.Created}}</td>
+              <td>{{task.Status}}</td>
+              <td>{{task.TaskOutcome}}</td>
+              <td> <a href={{task.RelatedItemsUrl}} target="_blank">view request</a></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
