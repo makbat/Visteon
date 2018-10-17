@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
+import { PagerService } from './_services/index';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { AppService } from './app.service';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [AppService],
+  providers: [AppService, PagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

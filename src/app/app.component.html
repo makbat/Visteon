@@ -15,10 +15,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let task of allAssignedTasks">
-            <th scope="row">
+          <tr *ngFor="let task of allAssignedTasksPagedItems">
+            <td>
               <a href={{task.TaskItemUrl}} target="_blank"> {{task.Title}}</a>
-            </th>
+            </td>
             <td>{{task.Created}}</td>
             <td>{{task.Status}}</td>
             <td>{{task.TaskOutcome}}</td>
@@ -27,10 +27,79 @@
             </td>
             <td></td>
           </tr>
+          <ul *ngIf="allAssignedTasksPager.pages && allAssignedTasksPager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:allAssignedTasksPager.currentPage === 1}">
+              <a (click)="setAssignedTasksPage(1)">First</a>
+            </li>
+            <li [ngClass]="{disabled:allAssignedTasksPager.currentPage === 1}">
+              <a (click)="setAssignedTasksPage(allAssignedTasksPager.currentPage - 1)">Previous</a>
+            </li>
+            <li *ngFor="let page of allAssignedTasksPager.pages" [ngClass]="{active:allAssignedTasksPager.currentPage === page}">
+              <a (click)="setAssignedTasksPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:allAssignedTasksPager.currentPage === allAssignedTasksPager.totalPages}">
+              <a (click)="setAssignedTasksPage(allAssignedTasksPager.currentPage + 1)">Next</a>
+            </li>
+            <li [ngClass]="{disabled:allAssignedTasksPager.currentPage === allAssignedTasksPager.totalPages}">
+              <a (click)="setAssignedTasksPage(allAssignedTasksPager.totalPages)">Last</a>
+            </li>
+          </ul>
         </tbody>
       </table>
     </div>
   </div>
+
+
+  <div class="panel-heading">
+    <h5 class="mb-0 panel-title">My Pending Tasks</h5>
+  </div>
+  <div class="panel-body">
+    <div class="modal-body row">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Task Current Status</th>
+            <th scope="col">Created Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">TaskOutcome</th>
+            <th scope="col">Request Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of allCompletedTasks">
+            <td>
+              <a href={{task.TaskItemUrl}} target="_blank"> {{task.Title}}</a>
+            </td>
+            <td>{{task.Created}}</td>
+            <td>{{task.Status}}</td>
+            <td>{{task.TaskOutcome}}</td>
+            <td>
+              <a href={{task.RelatedItemsUrl}} target="_blank">view request</a>
+            </td>
+            <td></td>
+          </tr>
+          <ul *ngIf="allCompletedTasksPager.pages && allCompletedTasksPager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:allCompletedTasksPager.currentPage === 1}">
+              <a (click)="setCompletedTasksPage(1)">First</a>
+            </li>
+            <li [ngClass]="{disabled:allCompletedTasksPager.currentPage === 1}">
+              <a (click)="setCompletedTasksPage(allCompletedTasksPager.currentPage - 1)">Previous</a>
+            </li>
+            <li *ngFor="let page of allCompletedTasksPager.pages" [ngClass]="{active:allCompletedTasksPager.currentPage === page}">
+              <a (click)="setCompletedTasksPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:allCompletedTasksPager.currentPage === allCompletedTasksPager.totalPages}">
+              <a (click)="setCompletedTasksPage(allCompletedTasksPager.currentPage + 1)">Next</a>
+            </li>
+            <li [ngClass]="{disabled:allCompletedTasksPager.currentPage === allCompletedTasksPager.totalPages}">
+              <a (click)="setCompletedTasksPage(allCompletedTasksPager.totalPages)">Last</a>
+            </li>
+          </ul>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 
   <div class="panel-heading">
     <h5 class="mb-0 panel-title">My Requests</h5>
@@ -46,14 +115,28 @@
         </thead>
         <tbody>
           <tr *ngFor="let request of allCreatedRequests">
-            <th scope="row">
-              
-            </th>
             <td>{{request.Title}}</td>
             <td>
               <a href={{request.ViewStatusUrl}} target="_blank">{{request.ViewStatusText}}</a>
             </td>
           </tr>
+          <ul *ngIf="allCreatedRequestsPager.pages && allCreatedRequestsPager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:allCreatedRequestsPager.currentPage === 1}">
+              <a (click)="setRequestsPage(1)">First</a>
+            </li>
+            <li [ngClass]="{disabled:allCreatedRequestsPager.currentPage === 1}">
+              <a (click)="setRequestsPage(allCreatedRequestsPager.currentPage - 1)">Previous</a>
+            </li>
+            <li *ngFor="let page of allCreatedRequestsPager.pages" [ngClass]="{active:allCreatedRequestsPager.currentPage === page}">
+              <a (click)="setRequestsPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:allCreatedRequestsPager.currentPage === allCreatedRequestsPager.totalPages}">
+              <a (click)="setRequestsPage(allCreatedRequestsPager.currentPage + 1)">Next</a>
+            </li>
+            <li [ngClass]="{disabled:allCreatedRequestsPager.currentPage === allCreatedRequestsPager.totalPages}">
+              <a (click)="setRequestsPage(allCreatedRequestsPager.totalPages)">Last</a>
+            </li>
+          </ul>
         </tbody>
       </table>
     </div>

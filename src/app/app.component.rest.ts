@@ -16,6 +16,7 @@ export class RestCalls {
         if (listName) {
             url = '/_api/web/lists/getbytitle(\'' + listName + '\')/items' + select + orderby + filter;
         }
+        console.log('url for' + filter + '--- ' + url);
         return new Promise((resolve, reject) => {
             this._appService.getListItem(url).subscribe(
                 (restData) => {
